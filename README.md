@@ -1,7 +1,7 @@
 # logger
 A simple logging middleware for goa.
 
-```bash
+```
 [2019-09-03 11:31:07] <-- GET /
 [2019-09-03 11:31:07] --> GET / 200 75ms
 [2019-09-03 11:31:15] <-- GET /
