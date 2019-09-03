@@ -17,6 +17,7 @@ var (
 	cyan   = color.New(color.FgCyan).SprintFunc()
 )
 
+// New returns the initialized goa-logger instance.
 func New() goa.Middleware {
 	return func(c *goa.Context, next func()) {
 		start := time.Now()
@@ -40,7 +41,7 @@ func New() goa.Middleware {
 					red("xxx"),
 					bold(c.Method),
 					c.Path,
-					ColorStatus(statusCode),
+					colorStatus(statusCode),
 					time.Since(start).Nanoseconds()/1e6,
 					"ms",
 				)
@@ -55,14 +56,14 @@ func New() goa.Middleware {
 			"-->",
 			bold(c.Method),
 			c.Path,
-			ColorStatus(c.GetStatus()),
+			colorStatus(c.GetStatus()),
 			time.Since(start).Nanoseconds()/1e6,
 			"ms",
 		)
 	}
 }
 
-func ColorStatus(code int) string {
+func colorStatus(code int) string {
 	switch {
 	case code >= http.StatusOK && code < http.StatusMultipleChoices:
 		return green(code)
